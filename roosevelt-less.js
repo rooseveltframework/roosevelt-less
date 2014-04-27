@@ -18,9 +18,12 @@ module.exports = {
         };
 
     parser.parse(fs.readFileSync(app.get('cssPath') + fileName, 'utf8'), function(err, tree) {
+      var newFile,
+          newCss;
+
       if (!err) {
-        var newFile = app.get('cssCompiledOutput') + fileName.replace('.less', '.css'),
-            newCss = tree.toCSS(opts);
+        newFile = app.get('cssCompiledOutput') + fileName.replace('.less', '.css');
+        newCss = tree.toCSS(opts);
       }
 
       callback(err, newFile, newCss);
