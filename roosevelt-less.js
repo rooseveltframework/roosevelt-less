@@ -1,6 +1,7 @@
 'use strict';
 
-var less = require('less');
+var fs = require('fs'),
+    less = require('less');
 
 module.exports = {
   versionCode: function(app) {
@@ -16,7 +17,7 @@ module.exports = {
           yuicompress: true
         };
 
-    parser.parse(fileName, function(err, tree) {
+    parser.parse(fs.readFileSync(app.get('cssPath') + fileName, 'utf8'), function(err, tree) {
       if (!err) {
         var newFile = app.get('cssCompiledOutput') + fileName.replace('.less', '.css'),
             newCss = tree.toCSS(opts);
