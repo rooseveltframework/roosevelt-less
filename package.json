@@ -1,0 +1,46 @@
+{
+  "name": "roosevelt-less",
+  "description": "LESS CSS preprocessor support for Roosevelt MVC web framework",
+  "author": "Eric Newport <kethinov@gmail.com>",
+  "version": "0.1.0",
+  "homepage": "https://github.com/kethinov/roosevelt-less",
+  "license": "Creative Commons Attribution 4.0 International License",
+  "main": "roosevelt-less.js",
+  "readmeFilename": "README.md",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "engineStrict": true,
+  "dependencies": {
+    "less": "~1.7.0"
+  },
+  "jshintConfig": {
+    "camelcase": true,
+    "curly": true,
+    "devel": true,
+    "evil": true,
+    "indent": 2,
+    "node": true
+  },
+  "devDependencies ": {
+    "jshint": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kethinov/roosevelt-less.git"
+  },
+  "keywords": [
+    "roosevelt.js",
+    "less.js",
+    "node.js",
+    "less",
+    "css",
+    "preprocessor"
+  ],
+  "preferGlobal": true,
+  "_from": "roosevelt-less@*",
+  "gitHead": "",
+  "scripts": {
+    "test": "jshint roosevelt-less.js"
+  }
+}
