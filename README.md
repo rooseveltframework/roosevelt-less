@@ -19,7 +19,7 @@ Declare your CSS compiler by passing it as a param to Roosevelt:
 
 ```js
 "rooseveltConfig": {
-  "cssCompiler": "{nodeModule: "roosevelt-less", params: {compress: true}}"
+  "cssCompiler": {nodeModule: "roosevelt-less", params: {compress: true}}
 }
 ```
 
