@@ -8,7 +8,7 @@ Usage
 
 Declare this module as a dependency in your app, for example:
 
-```json
+```js
 "dependencies": {
   "roosevelt": "*",
   "roosevelt-less": "*"
@@ -17,10 +17,10 @@ Declare this module as a dependency in your app, for example:
 
 Declare your CSS compiler by passing it as a param to Roosevelt:
 
-```json
+```js
 "rooseveltConfig": {
   "cssCompiler": "{nodeModule: "roosevelt-less", params: {compress: true}}"
-},
+}
 ```
 
 See the [LESS docs](http://lesscss.org/#using-less-configuration) for documentation on available params.
