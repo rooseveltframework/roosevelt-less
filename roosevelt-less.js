@@ -1,4 +1,3 @@
-// css preprocessor
 'use strict';
 
 var less = require('less');
@@ -19,7 +18,7 @@ module.exports = {
 
     parser.parse(fileName, function(err, tree) {
       if (!err) {
-        var newFile = app.get('cssCompiledOutput') + file.replace('.less', '.css'),
+        var newFile = app.get('cssCompiledOutput') + fileName.replace('.less', '.css'),
             newCss = tree.toCSS(opts);
       }
 
