@@ -1,4 +1,4 @@
-roosevelt-less
+roosevelt-less [![NPM version](https://badge.fury.io/js/roosevelt-less.png)](http://badge.fury.io/js/roosevelt-less) [![Dependency Status](https://gemnasium.com/kethinov/roosevelt-less.png)](https://gemnasium.com/kethinov/roosevelt-less) [![Gittip](http://img.shields.io/gittip/kethinov.png)](https://www.gittip.com/kethinov/)
 ==============
 
 [LESS](http://lesscss.org) CSS preprocessor support for [Roosevelt MVC web framework](https://github.com/kethinov/roosevelt).
