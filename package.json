@@ -2,7 +2,7 @@
   "name": "roosevelt-less",
   "description": "LESS CSS preprocessor support for Roosevelt MVC web framework",
   "author": "Eric Newport <kethinov@gmail.com>",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "homepage": "https://github.com/kethinov/roosevelt-less",
   "license": "Creative Commons Attribution 4.0 International License",
   "main": "roosevelt-less.js",
@@ -12,7 +12,7 @@
   },
   "engineStrict": true,
   "dependencies": {
-    "less": "~1.7.3"
+    "less": "^1.7.4"
   },
   "jshintConfig": {
     "camelcase": true,
