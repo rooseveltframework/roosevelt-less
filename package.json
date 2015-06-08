@@ -12,7 +12,7 @@
   },
   "engineStrict": true,
   "dependencies": {
-    "less": "^2.4.0"
+    "less": "^1.7.0"
   },
   "jshintConfig": {
     "camelcase": true,
