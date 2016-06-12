@@ -19,8 +19,22 @@ Declare your CSS compiler by passing it as a param to Roosevelt:
 
 ```js
 "rooseveltConfig": {
-  "cssCompiler": {nodeModule: "roosevelt-less", params: {compress: true}}
+  "cssCompiler": {nodeModule: "roosevelt-less", params: {advanced: true, aggressiveMerging: true}}
 }
 ```
 
-See the [LESS docs](http://lesscss.org/#using-less-configuration) for documentation on available params.
+Roosevelt-less uses the [less-plugin-clean-css](https://www.npmjs.com/package/less-plugin-clean-css) plugin under-the-hood for CSS minification and advanced compilation. Valid parameter arguments include options for clean-css. Default options set by roosevelt-less include:
+
+```js
+{
+  advanced: true,
+  aggressiveMerging: true
+}
+```
+
+See the [clean-css docs](https://github.com/jakubpawlowicz/clean-css) for documentation on available params.
+
+Backwards Compatibility
+===
+
+Since the upgrade to Less v2, Roosevelt-less uses the third party package [less-plugin-clean-css](https://www.npmjs.com/package/less-plugin-clean-css) for minification and compilation. Although the old Less `compress` option is no longer supported, Roosevelt-less will still allow it as a valid parameter and will simply interpret the parameter to enable clean-css's `advanced` and `aggressiveMerging` options.
