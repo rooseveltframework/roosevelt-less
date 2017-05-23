@@ -3,7 +3,7 @@
   "description": "LESS CSS preprocessor support for Roosevelt MVC web framework",
   "author": "Eric Newport <kethinov@gmail.com>",
   "version": "0.2.6",
-  "homepage": "https://github.com/kethinov/roosevelt-less",
+  "homepage": "https://github.com/rooseveltframework/roosevelt-less",
   "license": "Creative Commons Attribution 4.0 International License",
   "main": "roosevelt-less.js",
   "readmeFilename": "README.md",
@@ -28,7 +28,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/kethinov/roosevelt-less.git"
+    "url": "git://github.com/rooseveltframework/roosevelt-less.git"
   },
   "keywords": [
     "roosevelt.js",
