@@ -12,6 +12,7 @@
   },
   "engineStrict": true,
   "dependencies": {
+    "eslint": "^4.0.0",
     "less": "~2.7.1",
     "less-plugin-clean-css": "~1.5.1"
   },
@@ -127,6 +128,7 @@
   "_from": "roosevelt-less@*",
   "gitHead": "",
   "scripts": {
-    "test": "npm run eslint"
+    "test": "npm run eslint",
+    "eslint": "./node_modules/.bin/eslint ."
   }
 }
