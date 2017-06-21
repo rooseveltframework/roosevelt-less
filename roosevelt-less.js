@@ -1,5 +1,3 @@
-'use strict';
-
 var fs = require('fs'),
     LessPluginCleanCSS = require('less-plugin-clean-css'),
     less = require('less');
@@ -11,16 +9,16 @@ module.exports = {
 
   parse: function(app, fileName, callback) {
     var defaultCompress = true,
-    
+
         // LESS render options
         options = {
           filename: app.get('cssPath') + fileName,
           paths: app.get('cssPath')
         },
-        
+
         // Clean-css options
         opts,
-        
+
         // LESS clean-css plugin
         cleanCSSPlugin;
 
