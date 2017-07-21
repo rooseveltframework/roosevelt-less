@@ -4,7 +4,7 @@ var fs = require('fs'),
 
 module.exports = {
   versionCode: function(app) {
-    return '@' + app.get('params').versionedCssFile.varName + ': \'' + app.get('appVersion') + '\';';
+    return '@' + app.get('params').versionedCssFile.varName + ': \'' + app.get('appVersion') + '\';\n';
   },
 
   parse: function(app, fileName, callback) {
