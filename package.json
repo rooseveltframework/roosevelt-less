@@ -4,11 +4,11 @@
   "author": "Eric Newport <kethinov@gmail.com>",
   "version": "0.2.8",
   "homepage": "https://github.com/rooseveltframework/roosevelt-less",
-  "license": "Creative Commons Attribution 4.0 International License",
+  "license": "CC-BY-4.0",
   "main": "roosevelt-less.js",
   "readmeFilename": "README.md",
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=6.0.0"
   },
   "engineStrict": true,
   "dependencies": {
