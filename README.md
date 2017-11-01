@@ -1,5 +1,7 @@
 roosevelt-less
 ===
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/rooseveltframework/roosevelt-less.svg)](https://greenkeeper.io/)
 [![Build Status](https://travis-ci.org/rooseveltframework/roosevelt-less.svg?branch=master)](https://travis-ci.org/rooseveltframework/roosevelt-less) [![npm](https://img.shields.io/npm/v/roosevelt-less.svg)](https://www.npmjs.com/package/roosevelt-less)
 
 [LESS](http://lesscss.org) CSS preprocessor support for [Roosevelt MVC web framework](https://github.com/rooseveltframework/roosevelt).
