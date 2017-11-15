@@ -26,8 +26,8 @@ module.exports = {
       // LESS clean-css plugin
       let cleanCSSPlugin
 
-      if (params.sourceMap) {
-        options = Object.assign(options, params.sourceMap)
+      if (typeof params.params.sourceMap === 'object') {
+        options.sourceMap = params.params.sourceMap
       }
 
       // use clean-css plugin to minify CSS if noMinify param is false

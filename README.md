@@ -22,7 +22,7 @@ Declare your CSS compiler by passing it as a param to Roosevelt:
 
 ```js
 "rooseveltConfig": {
-  "cssCompiler": {nodeModule: "roosevelt-less", params: {cleanCSS: {advanced: true, aggressiveMerging: true}, sourceMap: {}}
+  "cssCompiler": {nodeModule: "roosevelt-less", params: {cleanCSS: {advanced: true, aggressiveMerging: true}, sourceMap: null}
 }
 ```
 
