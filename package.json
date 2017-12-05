@@ -2,7 +2,7 @@
   "name": "roosevelt-less",
   "description": "LESS CSS preprocessor support for Roosevelt MVC web framework",
   "author": "Eric Newport <kethinov@gmail.com>",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "homepage": "https://github.com/rooseveltframework/roosevelt-less",
   "license": "CC-BY-4.0",
   "main": "roosevelt-less.js",
