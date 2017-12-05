@@ -10,7 +10,8 @@ module.exports = {
 
   parse: function (app, fileName) {
     return new Promise((resolve, reject) => {
-      const params = app.get('params').cssCompiler
+      const cssCompiler = app.get('params').cssCompiler
+      const params = cssCompiler.params || {}
 
       // LESS render options
       let options = {
@@ -26,8 +27,8 @@ module.exports = {
       // LESS clean-css plugin
       let cleanCSSPlugin
 
-      if (typeof params.params.sourceMap === 'object') {
-        options.sourceMap = params.params.sourceMap
+      if (typeof params.sourceMap === 'object') {
+        options.sourceMap = params.sourceMap
       }
 
       // use clean-css plugin to minify CSS if noMinify param is false
@@ -35,7 +36,7 @@ module.exports = {
         opts = params.cleanCSS || {}
 
         // support use of the compress param
-        if (params.compress) {
+        if (cssCompiler.compress) {
           opts.advanced = true
           opts.aggressiveMerging = true
         }
