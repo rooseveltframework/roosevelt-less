@@ -5,12 +5,12 @@ const less = require('less')
 
 module.exports = {
   versionCode: function (app) {
-    return `@${app.get('params').versionedCssFile.varName}: '${app.get('appVersion')}';\n`
+    return `@${app.get('params').css.versionFile.varName}: '${app.get('appVersion')}';\n`
   },
 
   parse: function (app, fileName) {
     return new Promise((resolve, reject) => {
-      const cssCompiler = app.get('params').cssCompiler
+      const cssCompiler = app.get('params').css.compiler
       const params = cssCompiler.params || {}
 
       // LESS render options
