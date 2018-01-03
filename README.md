@@ -4,27 +4,7 @@ roosevelt-less
 [![Greenkeeper badge](https://badges.greenkeeper.io/rooseveltframework/roosevelt-less.svg)](https://greenkeeper.io/)
 [![Build Status](https://travis-ci.org/rooseveltframework/roosevelt-less.svg?branch=master)](https://travis-ci.org/rooseveltframework/roosevelt-less) [![npm](https://img.shields.io/npm/v/roosevelt-less.svg)](https://www.npmjs.com/package/roosevelt-less)
 
-[LESS](http://lesscss.org) CSS preprocessor support for [Roosevelt MVC web framework](https://github.com/rooseveltframework/roosevelt).
-
-Usage
-===
-
-Declare this module as a dependency in your app, for example:
-
-```js
-"dependencies": {
-  "roosevelt": "*",
-  "roosevelt-less": "*"
-}
-```
-
-Declare your CSS compiler by passing it as a param to Roosevelt:
-
-```js
-"rooseveltConfig": {
-  "cssCompiler": {nodeModule: "roosevelt-less", params: {cleanCSS: {advanced: true, aggressiveMerging: true}, sourceMap: null}
-}
-```
+[LESS](http://lesscss.org) CSS preprocessor middleware for [Roosevelt MVC web framework](https://github.com/rooseveltframework/roosevelt). See Roosevelt CSS compiler docs for usage.
 
 Params
 ---
