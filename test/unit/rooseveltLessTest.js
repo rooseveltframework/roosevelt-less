@@ -10,7 +10,7 @@ const fork = require('child_process').fork
 const less = require('less')
 const LessPluginCleanCSS = require('less-plugin-clean-css')
 
-describe('Roosevelt Sass Section Test', function () {
+describe('Roosevelt LESS Section Test', function () {
   // location of the test app
   const appDir = path.join(__dirname, '../app/lessJSTest')
 
@@ -225,6 +225,48 @@ describe('Roosevelt Sass Section Test', function () {
           done()
         }
       })
+    })
+  })
+
+  it('should give a "error" string if there is a massive problem with the code that the program is trying to parse (typo)', function (done) {
+    // CSS source script that has a error in it (typo)
+    const errorTest = `body { widthy: 300 pax`
+    // path of where the file with this script will be located
+    const pathOfErrorStaticCSS = path.join(appDir, 'statics', 'css', 'b.css')
+    // make this file before the test
+    fs.writeFileSync(pathOfErrorStaticCSS, errorTest)
+
+    // generate the app
+    generateTestApp({
+      appDir: appDir,
+      generateFolderStructure: true,
+      css: {
+        compiler: {
+          nodeModule: '../../roosevelt-less',
+          params: {
+            cleanCSS: {
+              advanced: true,
+              aggressiveMerging: true
+            },
+            sourceMap: null
+          }
+        }
+      }
+    }, 'initServer')
+
+    // fork the app and run it as a child process
+    const testApp = fork(path.join(appDir, 'app.js'), {'stdio': ['pipe', 'pipe', 'pipe', 'ipc']})
+
+    testApp.stderr.on('data', (data) => {
+      if (data.includes('failed')) {
+        testApp.kill()
+        done()
+      }
+    })
+
+    // It should not compiled, meaning that if it did, something is off with the error system
+    testApp.on('message', () => {
+      assert.fail('the app was able to initialize, meaning that roosevelt-sass was not able to detect the error')
     })
   })
 })
