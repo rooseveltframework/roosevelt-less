@@ -40,7 +40,7 @@ describe('Roosevelt LESS Section Test', function () {
   beforeEach(function () {
     // start by generating a statics folder in the roosevelt test app directory
     fse.ensureDirSync(path.join(appDir, 'statics', 'css'))
-    // generate sample js files in statics with JS source string from cssStaticFile
+    // generate sample css files in statics with css source string from cssStaticFile
     fs.writeFileSync(pathOfStaticCSS, cssStaticFile)
   })
 
@@ -77,7 +77,7 @@ describe('Roosevelt LESS Section Test', function () {
     // fork the app and run it as a child process
     const testApp = fork(path.join(appDir, 'app.js'), {'stdio': ['pipe', 'pipe', 'pipe', 'ipc']})
 
-    // grab the string data from the compiled js file and compare that to the string of what a normal uglified looks like
+    // grab the string data from the compiled css file and compare that to the string of what a normal one looks like
     testApp.on('message', () => {
       let contentsOfCompiledCSS = fs.readFileSync(pathOfcompiledCSS, 'utf8')
     // generate a CSS string that represents the CSS file that was compiled with no params set and compare that on the callback
@@ -126,7 +126,7 @@ describe('Roosevelt LESS Section Test', function () {
     // fork the app and run it as a child process
     const testApp = fork(path.join(appDir, 'app.js'), {'stdio': ['pipe', 'pipe', 'pipe', 'ipc']})
 
-    // grab the string data from the compiled js file and compare that to the string of what a normal uglified looks like
+    // grab the string data from the compiled css file and compare that to the string of what a normal one looks like
     testApp.on('message', () => {
       let contentsOfCompiledCSS = fs.readFileSync(pathOfcompiledCSS, 'utf8')
     // generate a CSS string that represents the CSS file that was compiled with no params set and compare that on the callback
@@ -176,7 +176,7 @@ describe('Roosevelt LESS Section Test', function () {
     // fork the app and run it as a child process
     const testApp = fork(path.join(appDir, 'app.js'), {'stdio': ['pipe', 'pipe', 'pipe', 'ipc']})
 
-    // grab the string data from the compiled js file and compare that to the string of what a normal uglified looks like
+    // grab the string data from the compiled css file and compare that to the string of what a normal uglified one like
     testApp.on('message', () => {
       testApp.kill()
       done()
@@ -206,7 +206,7 @@ describe('Roosevelt LESS Section Test', function () {
       // fork the app and run it as a child process
     const testApp = fork(path.join(appDir, 'app.js'), {'stdio': ['pipe', 'pipe', 'pipe', 'ipc']})
 
-      // grab the string data from the compiled js file and compare that to the string of what a normal uglified looks like
+      // grab the string data from the compiled css file and compare that to the string of what a normal one looks like
     testApp.on('message', () => {
       let contentsOfCompiledCSS = fs.readFileSync(pathOfcompiledCSS, 'utf8')
       // generate a CSS string that represents the CSS file that was compiled with no params set and compare that on the callback
@@ -261,7 +261,7 @@ describe('Roosevelt LESS Section Test', function () {
     const testApp = fork(path.join(appDir, 'app.js'), {'stdio': ['pipe', 'pipe', 'pipe', 'ipc']})
 
     testApp.stderr.on('data', (data) => {
-      if (data.includes('failed')) {
+      if (data.includes('failed to parse')) {
         testApp.kill()
         done()
       }
