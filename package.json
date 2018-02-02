@@ -21,7 +21,7 @@
     "lint-staged": "~6.0.0",
     "husky": "~0.14.0",
     "mocha": "~5.0.0",
-    "roosevelt": "~0.11.7"
+    "roosevelt": "~0.11.8"
   },
   "repository": {
     "type": "git",
