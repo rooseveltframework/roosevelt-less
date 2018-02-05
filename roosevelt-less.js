@@ -27,7 +27,7 @@ module.exports = {
       // LESS clean-css plugin
       let cleanCSSPlugin
 
-      if (typeof params.sourceMap === 'object') {
+      if (typeof params.sourceMap === 'object' && app.settings.env === 'development') {
         options.sourceMap = params.sourceMap
       }
 

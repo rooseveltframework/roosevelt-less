@@ -151,7 +151,7 @@ describe('Roosevelt LESS Section Test', function () {
     })
   })
 
-  it('should make a inline comment that is a source map for the pre-compiled css files', function (done) {
+  it('should make a inline comment that is a source map for the pre-compiled css files while it is in development mode', function (done) {
     // generate the app
     generateTestApp({
       appDir: appDir,
@@ -174,7 +174,7 @@ describe('Roosevelt LESS Section Test', function () {
     }, lOptions)
 
     // fork the app and run it as a child process
-    const testApp = fork(path.join(appDir, 'app.js'), {'stdio': ['pipe', 'pipe', 'pipe', 'ipc']})
+    const testApp = fork(path.join(appDir, 'app.js'), ['--dev'], {'stdio': ['pipe', 'pipe', 'pipe', 'ipc']})
 
     // grab the string data from the compiled css file and compare that to the string of what a normal uglified one like
     testApp.on('message', () => {
@@ -182,6 +182,42 @@ describe('Roosevelt LESS Section Test', function () {
       let contentsOfCompiledCSS = fs.readFileSync(pathOfcompiledCSS, 'utf8')
       let test1 = contentsOfCompiledCSS.includes('/*# sourceMappingURL')
       assert.equal(test1, true)
+      testApp.kill()
+      done()
+    })
+  })
+
+  it('should not make a inline comment that is a source map for the pre-compiled css files while it is in production mode', function (done) {
+    // generate the app
+    generateTestApp({
+      appDir: appDir,
+      generateFolderStructure: true,
+      css: {
+        compiler: {
+          nodeModule: '../../roosevelt-less',
+          params: {
+            cleanCSS: {
+              advanced: false,
+              aggressiveMerging: false,
+              keepBreaks: true
+            },
+            sourceMap: {
+              sourceMapFileInline: true
+            }
+          }
+        }
+      }
+    }, lOptions)
+
+    // fork the app and run it as a child process
+    const testApp = fork(path.join(appDir, 'app.js'), ['--prod'], {'stdio': ['pipe', 'pipe', 'pipe', 'ipc']})
+
+    // grab the string data from the compiled css file and compare that to the string of what a normal uglified one like
+    testApp.on('message', () => {
+      // read the string data
+      let contentsOfCompiledCSS = fs.readFileSync(pathOfcompiledCSS, 'utf8')
+      let test1 = contentsOfCompiledCSS.includes('/*# sourceMappingURL')
+      assert.equal(test1, false)
       testApp.kill()
       done()
     })
