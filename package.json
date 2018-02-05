@@ -8,7 +8,7 @@
   "main": "roosevelt-less.js",
   "readmeFilename": "README.md",
   "engines": {
-    "node": ">=6.0.0"
+    "node": ">=8.0.0"
   },
   "engineStrict": true,
   "dependencies": {
