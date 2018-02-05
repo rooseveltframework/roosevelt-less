@@ -151,7 +151,7 @@ describe('Roosevelt LESS Section Test', function () {
     })
   })
 
-  it.skip('should make a compiled CSS file that is a source map for the pre-compiled css files', function (done) {
+  it('should make a inline comment that is a source map for the pre-compiled css files', function (done) {
     // generate the app
     generateTestApp({
       appDir: appDir,
@@ -166,18 +166,22 @@ describe('Roosevelt LESS Section Test', function () {
               keepBreaks: true
             },
             sourceMap: {
-              outputFile: 'file.map'
+              sourceMapFileInline: true
             }
           }
         }
       }
-    }, 'initServer')
+    }, lOptions)
 
     // fork the app and run it as a child process
     const testApp = fork(path.join(appDir, 'app.js'), {'stdio': ['pipe', 'pipe', 'pipe', 'ipc']})
 
     // grab the string data from the compiled css file and compare that to the string of what a normal uglified one like
     testApp.on('message', () => {
+      // read the string data
+      let contentsOfCompiledCSS = fs.readFileSync(pathOfcompiledCSS, 'utf8')
+      let test1 = contentsOfCompiledCSS.includes('/*# sourceMappingURL')
+      assert.equal(test1, true)
       testApp.kill()
       done()
     })
