@@ -14,22 +14,28 @@ describe('Roosevelt LESS Section Test', function () {
   // location of the test app
   const appDir = path.join(__dirname, '../app/lessJSTest')
 
-  // sample CSS source string to test the compiler with
-  const cssStaticFile = `body {
+  // sample Sass source string to test the compiler with
+  const lessStaticFile = `
+  @fontSize1: 25px;
+  @fontSize2: 15px;
+  body {
     height: 100%;
+    font-size: @fontSize2;
   }
   h1 {
     font-size: 10px;
+    font-size: @fontSize1;
   }
   p1 {
     width: calc((50px * 5px ) - 100px);
+    font-size: @fontSize2;
   }
   p2 {
 
   }
   `
   // path to where the file with the CSS source string written on it will be
-  const pathOfStaticCSS = path.join(appDir, 'statics', 'css', 'a.css')
+  const pathOfStaticLess = path.join(appDir, 'statics', 'css', 'a.less')
 
   // path to where the compiled CSS file will be written to
   const pathOfcompiledCSS = path.join(appDir, 'statics', '.build', 'css', 'a.css')
@@ -41,7 +47,7 @@ describe('Roosevelt LESS Section Test', function () {
     // start by generating a statics folder in the roosevelt test app directory
     fse.ensureDirSync(path.join(appDir, 'statics', 'css'))
     // generate sample css files in statics with css source string from cssStaticFile
-    fs.writeFileSync(pathOfStaticCSS, cssStaticFile)
+    fs.writeFileSync(pathOfStaticLess, lessStaticFile)
   })
 
   afterEach(function (done) {
@@ -89,7 +95,7 @@ describe('Roosevelt LESS Section Test', function () {
       options.plugins = [cleansCSSPlugin]
       options.sourceMap = null
 
-      less.render(cssStaticFile, options, function (error, output) {
+      less.render(lessStaticFile, options, function (error, output) {
         if (error) {
           console.log(error)
           throw error
@@ -137,7 +143,7 @@ describe('Roosevelt LESS Section Test', function () {
       const options = {}
       options.plugins = [cleansCSSPlugin]
       options.sourceMap = null
-      less.render(cssStaticFile, options, function (error, output) {
+      less.render(lessStaticFile, options, function (error, output) {
         if (error) {
           console.log(error)
           throw error
@@ -257,7 +263,7 @@ describe('Roosevelt LESS Section Test', function () {
       const options = {}
       options.plugins = [cleansCSSPlugin]
       options.sourceMap = null
-      less.render(cssStaticFile, options, function (error, output) {
+      less.render(lessStaticFile, options, function (error, output) {
         if (error) {
           console.log(error)
           throw error
