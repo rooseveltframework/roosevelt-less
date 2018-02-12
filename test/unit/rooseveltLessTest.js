@@ -102,10 +102,12 @@ describe('Roosevelt LESS Section Test', function () {
         } else {
           let test = contentsOfCompiledCSS === output.css
           assert.equal(test, true)
-          testApp.kill()
-          done()
+          testApp.kill('SIGINT')
         }
       })
+    })
+    testApp.on('exit', () => {
+      done()
     })
   })
 
@@ -150,10 +152,12 @@ describe('Roosevelt LESS Section Test', function () {
         } else {
           let test = contentsOfCompiledCSS === output.css
           assert.equal(test, true)
-          testApp.kill()
-          done()
+          testApp.kill('SIGINT')
         }
       })
+    })
+    testApp.on('exit', () => {
+      done()
     })
   })
 
@@ -224,7 +228,10 @@ describe('Roosevelt LESS Section Test', function () {
       let contentsOfCompiledCSS = fs.readFileSync(pathOfcompiledCSS, 'utf8')
       let test1 = contentsOfCompiledCSS.includes('/*# sourceMappingURL')
       assert.equal(test1, false)
-      testApp.kill()
+      testApp.kill('SIGINT')
+    })
+
+    testApp.on('exit', () => {
       done()
     })
   })
@@ -270,10 +277,12 @@ describe('Roosevelt LESS Section Test', function () {
         } else {
           let test = contentsOfCompiledCSS === output.css
           assert.equal(test, false)
-          testApp.kill()
-          done()
+          testApp.kill('SIGINT')
         }
       })
+    })
+    testApp.on('exit', () => {
+      done()
     })
   })
 
@@ -284,7 +293,8 @@ describe('Roosevelt LESS Section Test', function () {
     const pathOfErrorStaticCSS = path.join(appDir, 'statics', 'css', 'b.css')
     // make this file before the test
     fs.writeFileSync(pathOfErrorStaticCSS, errorTest)
-
+    // variable to show whether or not an error has occured
+    let error = false
     // generate the app
     generateTestApp({
       appDir: appDir,
@@ -308,15 +318,18 @@ describe('Roosevelt LESS Section Test', function () {
 
     testApp.stderr.on('data', (data) => {
       if (data.includes('failed to parse')) {
-        testApp.kill()
-        done()
+        error = true
       }
     })
 
     // It should not compiled, meaning that if it did, something is off with the error system
     testApp.on('message', () => {
-      assert.fail('the app was able to initialize, meaning that roosevelt-less was not able to detect the error')
-      testApp.kill()
+      if (!error) {
+        assert.fail('the app was able to initialize, meaning that roosevelt-less was not able to detect the error')
+      }
+      testApp.kill('SIGINT')
+    })
+    testApp.on('exit', () => {
       done()
     })
   })
