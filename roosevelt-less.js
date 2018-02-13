@@ -29,6 +29,8 @@ module.exports = {
 
       if (typeof params.sourceMap === 'object' && app.settings.env === 'development') {
         options.sourceMap = params.sourceMap
+      } else {
+        options.sourceMap = undefined
       }
 
       // use clean-css plugin to minify CSS if noMinify param is false

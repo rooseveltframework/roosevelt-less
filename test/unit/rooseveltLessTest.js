@@ -176,7 +176,8 @@ describe('Roosevelt LESS Section Test', function () {
               keepBreaks: true
             },
             sourceMap: {
-              sourceMapFileInline: true
+              sourceMapFileInline: true,
+              outputSourceFiles: true
             }
           }
         }
@@ -190,7 +191,7 @@ describe('Roosevelt LESS Section Test', function () {
     testApp.on('message', () => {
       // read the string data
       let contentsOfCompiledCSS = fs.readFileSync(pathOfcompiledCSS, 'utf8')
-      let test1 = contentsOfCompiledCSS.includes('/*# sourceMappingURL')
+      let test1 = contentsOfCompiledCSS.includes('/*# sourceMappingURL=data:application/json;base64')
       assert.equal(test1, true)
       testApp.kill()
       done()
@@ -212,7 +213,8 @@ describe('Roosevelt LESS Section Test', function () {
               keepBreaks: true
             },
             sourceMap: {
-              sourceMapFileInline: true
+              sourceMapFileInline: true,
+              outputSourceFiles: true
             }
           }
         }
@@ -226,7 +228,7 @@ describe('Roosevelt LESS Section Test', function () {
     testApp.on('message', () => {
       // read the string data
       let contentsOfCompiledCSS = fs.readFileSync(pathOfcompiledCSS, 'utf8')
-      let test1 = contentsOfCompiledCSS.includes('/*# sourceMappingURL')
+      let test1 = contentsOfCompiledCSS.includes('/*# sourceMappingURL=data:application/json;base64')
       assert.equal(test1, false)
       testApp.kill('SIGINT')
     })
