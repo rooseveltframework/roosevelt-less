@@ -90,15 +90,15 @@ describe('Roosevelt LESS Section Test', function () {
 
       // set up the options that would be the same as the default of the app
       const opts = {advanced: true, aggressiveMerging: true}
-      const cleansCSSPlugin = new LessPluginCleanCSS(opts)
+      const cleanCSSPlugin = new LessPluginCleanCSS(opts)
       const options = {}
-      options.plugins = [cleansCSSPlugin]
+      options.plugins = [cleanCSSPlugin]
       options.sourceMap = null
 
       less.render(lessStaticFile, options, function (error, output) {
         if (error) {
-          console.log(error)
-          throw error
+          assert.fail(error)
+          testApp.kill('SIGINT')
         } else {
           let test = contentsOfCompiledCSS === output.css
           assert.equal(test, true)
@@ -141,14 +141,14 @@ describe('Roosevelt LESS Section Test', function () {
 
       // set up the options that would be the same as the default of the app
       const opts = {advanced: false, aggressiveMerging: false, keepBreaks: true}
-      const cleansCSSPlugin = new LessPluginCleanCSS(opts)
+      const cleanCSSPlugin = new LessPluginCleanCSS(opts)
       const options = {}
-      options.plugins = [cleansCSSPlugin]
+      options.plugins = [cleanCSSPlugin]
       options.sourceMap = null
       less.render(lessStaticFile, options, function (error, output) {
         if (error) {
-          console.log(error)
-          throw error
+          assert.fail(error)
+          testApp.kill('SIGINT')
         } else {
           let test = contentsOfCompiledCSS === output.css
           assert.equal(test, true)
@@ -268,14 +268,14 @@ describe('Roosevelt LESS Section Test', function () {
 
       // set up the options that would be the same as the default of the app
       const opts = {advanced: false, aggressiveMerging: false}
-      const cleansCSSPlugin = new LessPluginCleanCSS(opts)
+      const cleanCSSPlugin = new LessPluginCleanCSS(opts)
       const options = {}
-      options.plugins = [cleansCSSPlugin]
+      options.plugins = [cleanCSSPlugin]
       options.sourceMap = null
       less.render(lessStaticFile, options, function (error, output) {
         if (error) {
-          console.log(error)
-          throw error
+          assert.fail(error)
+          testApp.kill('SIGINT')
         } else {
           let test = contentsOfCompiledCSS === output.css
           assert.equal(test, false)
