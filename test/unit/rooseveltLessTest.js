@@ -335,4 +335,154 @@ describe('Roosevelt LESS Section Test', function () {
       done()
     })
   })
+
+  it('make a CSS file that declares a CSS variable that contains the app version number from package.js', function (done) {
+    // contents of sample package.json file to use for testing css versionFile
+    let packageJSON = {
+      version: '0.3.1',
+      rooseveltConfig: {}
+    }
+
+    // generate the package json file with basic data
+    fse.ensureDirSync(path.join(appDir))
+    fs.writeFileSync(path.join(appDir, 'package.json'), JSON.stringify(packageJSON))
+
+    // create the app.js file
+    generateTestApp({
+      appDir: appDir,
+      css: {
+        compiler: {
+          nodeModule: '../../roosevelt-less',
+          params: {
+            cleanCSS: {
+              advanced: true,
+              aggressiveMerging: true
+            },
+            sourceMap: null
+          }
+        },
+        versionFile: {
+          fileName: '_version.less',
+          varName: 'appVersion'
+        }
+      },
+      generateFolderStructure: true
+    }, lOptions)
+
+    // fork the app.js file and run it as a child process
+    const testApp = fork(path.join(appDir, 'app.js'), {'stdio': ['pipe', 'pipe', 'pipe', 'ipc']})
+
+    // wait for the app to be finished initialized
+    testApp.on('message', () => {
+      // see if the file exist inside the css folder
+      let versionFilePath = path.join(appDir, 'statics', 'css', '_version.less')
+      let test1 = fs.existsSync(versionFilePath)
+      assert.equal(test1, true)
+      // see that the value in the css version file is correct
+      let versionFileString = fs.readFileSync(path.join(appDir, 'statics', 'css', '_version.less'), 'utf8')
+      let versionFileNum = versionFileString.split(`'`)
+      let test2 = packageJSON.version === versionFileNum[1]
+      assert.equal(test2, true)
+      testApp.kill('SIGINT')
+    })
+
+    testApp.on('exit', () => {
+      done()
+    })
+  })
+
+  it(`should be able to compile a less file that uses its advanced and aggressiveMerging options if the compress param is true`, function (done) {
+    // generate the app
+    generateTestApp({
+      appDir: appDir,
+      generateFolderStructure: true,
+      css: {
+        compiler: {
+          nodeModule: '../../roosevelt-less',
+          params: {
+            cleanCSS: {
+              advanced: false,
+              aggressiveMerging: false
+            },
+            sourceMap: null,
+            compress: true
+          }
+        }
+      }
+    }, lOptions)
+
+      // fork the app and run it as a child process
+    const testApp = fork(path.join(appDir, 'app.js'), {'stdio': ['pipe', 'pipe', 'pipe', 'ipc']})
+
+      // grab the string data from the compiled css file and compare that to the string of what a normal one looks like
+    testApp.on('message', () => {
+      let contentsOfCompiledCSS = fs.readFileSync(pathOfcompiledCSS, 'utf8')
+      // generate a CSS string that represents the CSS file that was compiled with no params set and compare that on the callback
+
+      // set up the options that would be the same as the default of the app
+      const opts = {advanced: true, aggressiveMerging: true}
+      const cleanCSSPlugin = new LessPluginCleanCSS(opts)
+      const options = {}
+      options.plugins = [cleanCSSPlugin]
+      options.sourceMap = null
+      less.render(lessStaticFile, options, function (error, output) {
+        if (error) {
+          assert.fail(error)
+          testApp.kill('SIGINT')
+        } else {
+          let test = contentsOfCompiledCSS === output.css
+          assert.equal(test, true)
+          testApp.kill('SIGINT')
+        }
+      })
+    })
+    testApp.on('exit', () => {
+      done()
+    })
+  })
+
+  it(`should be able to compile a less file that uses none of cleanCSS features if cleanCSS is not set`, function (done) {
+    // generate the app
+    generateTestApp({
+      appDir: appDir,
+      generateFolderStructure: true,
+      css: {
+        compiler: {
+          nodeModule: '../../roosevelt-less',
+          params: {
+            sourceMap: null
+          }
+        }
+      }
+    }, lOptions)
+
+      // fork the app and run it as a child process
+    const testApp = fork(path.join(appDir, 'app.js'), {'stdio': ['pipe', 'pipe', 'pipe', 'ipc']})
+
+      // grab the string data from the compiled css file and compare that to the string of what a normal one looks like
+    testApp.on('message', () => {
+      let contentsOfCompiledCSS = fs.readFileSync(pathOfcompiledCSS, 'utf8')
+      // generate a CSS string that represents the CSS file that was compiled with no params set and compare that on the callback
+
+      // set up the options that would be the same as the default of the app
+      const opts = {}
+      const cleanCSSPlugin = new LessPluginCleanCSS(opts)
+      const options = {}
+      options.plugins = [cleanCSSPlugin]
+      options.sourceMap = null
+      less.render(lessStaticFile, options, function (error, output) {
+        if (error) {
+          assert.fail(error)
+          testApp.kill('SIGINT')
+        } else {
+          let test = contentsOfCompiledCSS === output.css
+          assert.equal(test, true)
+          testApp.kill('SIGINT')
+        }
+      })
+    })
+    testApp.on('exit', () => {
+      done()
+    })
+  })
 })
