@@ -86,7 +86,7 @@ describe('Roosevelt LESS Section Test', function () {
     // grab the string data from the compiled css file and compare that to the string of what a normal one looks like
     testApp.on('message', () => {
       let contentsOfCompiledCSS = fs.readFileSync(pathOfcompiledCSS, 'utf8')
-    // generate a CSS string that represents the CSS file that was compiled with no params set and compare that on the callback
+      // generate a CSS string that represents the CSS file that was compiled with no params set and compare that on the callback
 
       // set up the options that would be the same as the default of the app
       const opts = {advanced: true, aggressiveMerging: true}
@@ -137,7 +137,7 @@ describe('Roosevelt LESS Section Test', function () {
     // grab the string data from the compiled css file and compare that to the string of what a normal one looks like
     testApp.on('message', () => {
       let contentsOfCompiledCSS = fs.readFileSync(pathOfcompiledCSS, 'utf8')
-    // generate a CSS string that represents the CSS file that was compiled with no params set and compare that on the callback
+      // generate a CSS string that represents the CSS file that was compiled with no params set and compare that on the callback
 
       // set up the options that would be the same as the default of the app
       const opts = {advanced: false, aggressiveMerging: false, keepBreaks: true}
@@ -258,10 +258,10 @@ describe('Roosevelt LESS Section Test', function () {
       }
     }, lOptions)
 
-      // fork the app and run it as a child process
+    // fork the app and run it as a child process
     const testApp = fork(path.join(appDir, 'app.js'), {'stdio': ['pipe', 'pipe', 'pipe', 'ipc']})
 
-      // grab the string data from the compiled css file and compare that to the string of what a normal one looks like
+    // grab the string data from the compiled css file and compare that to the string of what a normal one looks like
     testApp.on('message', () => {
       let contentsOfCompiledCSS = fs.readFileSync(pathOfcompiledCSS, 'utf8')
       // generate a CSS string that represents the CSS file that was compiled with no params set and compare that on the callback
@@ -411,10 +411,10 @@ describe('Roosevelt LESS Section Test', function () {
       }
     }, lOptions)
 
-      // fork the app and run it as a child process
+    // fork the app and run it as a child process
     const testApp = fork(path.join(appDir, 'app.js'), {'stdio': ['pipe', 'pipe', 'pipe', 'ipc']})
 
-      // grab the string data from the compiled css file and compare that to the string of what a normal one looks like
+    // grab the string data from the compiled css file and compare that to the string of what a normal one looks like
     testApp.on('message', () => {
       let contentsOfCompiledCSS = fs.readFileSync(pathOfcompiledCSS, 'utf8')
       // generate a CSS string that represents the CSS file that was compiled with no params set and compare that on the callback
@@ -456,10 +456,10 @@ describe('Roosevelt LESS Section Test', function () {
       }
     }, lOptions)
 
-      // fork the app and run it as a child process
+    // fork the app and run it as a child process
     const testApp = fork(path.join(appDir, 'app.js'), {'stdio': ['pipe', 'pipe', 'pipe', 'ipc']})
 
-      // grab the string data from the compiled css file and compare that to the string of what a normal one looks like
+    // grab the string data from the compiled css file and compare that to the string of what a normal one looks like
     testApp.on('message', () => {
       let contentsOfCompiledCSS = fs.readFileSync(pathOfcompiledCSS, 'utf8')
       // generate a CSS string that represents the CSS file that was compiled with no params set and compare that on the callback
@@ -498,10 +498,10 @@ describe('Roosevelt LESS Section Test', function () {
       }
     }, lOptions)
 
-      // fork the app and run it as a child process
+    // fork the app and run it as a child process
     const testApp = fork(path.join(appDir, 'app.js'), {'stdio': ['pipe', 'pipe', 'pipe', 'ipc']})
 
-      // grab the string data from the compiled css file and compare that to the string of what a normal one looks like
+    // grab the string data from the compiled css file and compare that to the string of what a normal one looks like
     testApp.on('message', () => {
       let contentsOfCompiledCSS = fs.readFileSync(pathOfcompiledCSS, 'utf8')
       // generate a CSS string that represents the CSS file that was compiled with no params set and compare that on the callback
