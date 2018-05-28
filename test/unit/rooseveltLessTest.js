@@ -193,7 +193,10 @@ describe('Roosevelt LESS Section Test', function () {
       let contentsOfCompiledCSS = fs.readFileSync(pathOfcompiledCSS, 'utf8')
       let test1 = contentsOfCompiledCSS.includes('/*# sourceMappingURL=data:application/json;base64')
       assert.equal(test1, true)
-      testApp.kill()
+      testApp.kill('SIGINT')
+    })
+
+    testApp.on('exit', () => {
       done()
     })
   })
