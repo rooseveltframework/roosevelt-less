@@ -1,7 +1,7 @@
 roosevelt-less
 ===
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/rooseveltframework/roosevelt-less.svg)](https://greenkeeper.io/) [![Build Status](https://travis-ci.org/rooseveltframework/roosevelt-less.svg?branch=master)](https://travis-ci.org/rooseveltframework/roosevelt-less) [![Coverage Status](https://coveralls.io/repos/github/rooseveltframework/roosevelt-less/badge.svg?branch=master)](https://coveralls.io/github/rooseveltframework/roosevelt-less?branch=master) [![npm](https://img.shields.io/npm/v/roosevelt-less.svg)](https://www.npmjs.com/package/roosevelt-less)
+[![Greenkeeper badge](https://badges.greenkeeper.io/rooseveltframework/roosevelt-less.svg)](https://greenkeeper.io/) [![Build Status](https://travis-ci.org/rooseveltframework/roosevelt-less.svg?branch=master)](https://travis-ci.org/rooseveltframework/roosevelt-less) [![Build status](https://ci.appveyor.com/api/projects/status/exl75v6q4xvlr207?svg=true)](https://ci.appveyor.com/project/kethinov/roosevelt-less) [![codecov](https://codecov.io/gh/rooseveltframework/roosevelt-less/branch/master/graph/badge.svg)](https://codecov.io/gh/rooseveltframework/roosevelt-less) [![npm](https://img.shields.io/npm/v/roosevelt-less.svg)](https://www.npmjs.com/package/roosevelt-less)
 
 [LESS](http://lesscss.org) CSS preprocessor middleware for [Roosevelt MVC web framework](https://github.com/rooseveltframework/roosevelt). See Roosevelt CSS compiler docs for usage.
 
