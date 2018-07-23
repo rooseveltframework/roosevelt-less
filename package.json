@@ -17,7 +17,7 @@
   },
   "engineStrict": true,
   "dependencies": {
-    "less": "~3.5.0",
+    "less": "~3.8.0",
     "less-plugin-clean-css": "~1.5.1"
   },
   "devDependencies": {
