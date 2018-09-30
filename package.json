@@ -21,7 +21,7 @@
     "less-plugin-clean-css": "~1.5.1"
   },
   "devDependencies": {
-    "codecov": "3.0.4",
+    "codecov": "3.1.0",
     "eslint": "5.5.0",
     "eslint-plugin-mocha": "5.2.0",
     "fs-extra": "7.0.0",
