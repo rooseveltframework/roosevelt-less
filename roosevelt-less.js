@@ -33,8 +33,8 @@ module.exports = {
         options.sourceMap = undefined
       }
 
-      // use clean-css plugin to minify CSS if noMinify param is false
-      if (!app.get('params').noMinify) {
+      // use clean-css plugin to minify CSS if minify param is true
+      if (app.get('params').minify) {
         opts = params.cleanCSS || {}
 
         // support use of the compress param
