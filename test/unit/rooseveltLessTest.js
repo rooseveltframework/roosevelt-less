@@ -98,11 +98,11 @@ describe('Roosevelt LESS Section Test', function () {
       less.render(lessStaticFile, options, function (error, output) {
         if (error) {
           assert.fail(error)
-          testApp.kill('SIGINT')
+          testApp.send('stop')
         } else {
           let test = contentsOfCompiledCSS === output.css
           assert.strictEqual(test, true)
-          testApp.kill('SIGINT')
+          testApp.send('stop')
         }
       })
     })
@@ -148,11 +148,11 @@ describe('Roosevelt LESS Section Test', function () {
       less.render(lessStaticFile, options, function (error, output) {
         if (error) {
           assert.fail(error)
-          testApp.kill('SIGINT')
+          testApp.send('stop')
         } else {
           let test = contentsOfCompiledCSS === output.css
           assert.strictEqual(test, true)
-          testApp.kill('SIGINT')
+          testApp.send('stop')
         }
       })
     })
@@ -193,7 +193,7 @@ describe('Roosevelt LESS Section Test', function () {
       let contentsOfCompiledCSS = fs.readFileSync(pathOfcompiledCSS, 'utf8')
       let test1 = contentsOfCompiledCSS.includes('/*# sourceMappingURL=data:application/json;base64')
       assert.strictEqual(test1, true)
-      testApp.kill('SIGINT')
+      testApp.send('stop')
     })
 
     testApp.on('exit', () => {
@@ -233,7 +233,7 @@ describe('Roosevelt LESS Section Test', function () {
       let contentsOfCompiledCSS = fs.readFileSync(pathOfcompiledCSS, 'utf8')
       let test1 = contentsOfCompiledCSS.includes('/*# sourceMappingURL=data:application/json;base64')
       assert.strictEqual(test1, false)
-      testApp.kill('SIGINT')
+      testApp.send('stop')
     })
 
     testApp.on('exit', () => {
@@ -278,11 +278,11 @@ describe('Roosevelt LESS Section Test', function () {
       less.render(lessStaticFile, options, function (error, output) {
         if (error) {
           assert.fail(error)
-          testApp.kill('SIGINT')
+          testApp.send('stop')
         } else {
           let test = contentsOfCompiledCSS === output.css
           assert.strictEqual(test, false)
-          testApp.kill('SIGINT')
+          testApp.send('stop')
         }
       })
     })
@@ -332,7 +332,7 @@ describe('Roosevelt LESS Section Test', function () {
       if (!error) {
         assert.fail('the app was able to initialize, meaning that roosevelt-less was not able to detect the error')
       }
-      testApp.kill('SIGINT')
+      testApp.send('stop')
     })
     testApp.on('exit', () => {
       done()
@@ -386,7 +386,7 @@ describe('Roosevelt LESS Section Test', function () {
       let versionFileNum = versionFileString.split(`'`)
       let test2 = packageJSON.version === versionFileNum[1]
       assert.strictEqual(test2, true)
-      testApp.kill('SIGINT')
+      testApp.send('stop')
     })
 
     testApp.on('exit', () => {
@@ -431,11 +431,11 @@ describe('Roosevelt LESS Section Test', function () {
       less.render(lessStaticFile, options, function (error, output) {
         if (error) {
           assert.fail(error)
-          testApp.kill('SIGINT')
+          testApp.send('stop')
         } else {
           let test = contentsOfCompiledCSS === output.css
           assert.strictEqual(test, true)
-          testApp.kill('SIGINT')
+          testApp.send('stop')
         }
       })
     })
@@ -476,11 +476,11 @@ describe('Roosevelt LESS Section Test', function () {
       less.render(lessStaticFile, options, function (error, output) {
         if (error) {
           assert.fail(error)
-          testApp.kill('SIGINT')
+          testApp.send('stop')
         } else {
           let test = contentsOfCompiledCSS === output.css
           assert.strictEqual(test, true)
-          testApp.kill('SIGINT')
+          testApp.send('stop')
         }
       })
     })
@@ -518,11 +518,11 @@ describe('Roosevelt LESS Section Test', function () {
       less.render(lessStaticFile, options, function (error, output) {
         if (error) {
           assert.fail(error)
-          testApp.kill('SIGINT')
+          testApp.send('stop')
         } else {
           let test = contentsOfCompiledCSS === output.css
           assert.strictEqual(test, true)
-          testApp.kill('SIGINT')
+          testApp.send('stop')
         }
       })
     })
