@@ -241,12 +241,12 @@ describe('Roosevelt LESS Section Test', function () {
     })
   })
 
-  it('should not use the cleanCSS plugin if noMinify is true', function (done) {
+  it('should not use the cleanCSS plugin if minify is true', function (done) {
     // generate the app
     generateTestApp({
       appDir: appDir,
       generateFolderStructure: true,
-      noMinify: true,
+      minify: false,
       css: {
         compiler: {
           nodeModule: '../../roosevelt-less',
