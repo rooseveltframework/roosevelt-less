@@ -29,7 +29,7 @@
     "lint-staged": "7.3.0",
     "mocha": "5.2.0",
     "nyc": "13.1.0",
-    "roosevelt": "0.12.0",
+    "roosevelt": "0.12.1",
     "standard": "12.0.1"
   },
   "repository": {
