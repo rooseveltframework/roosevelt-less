@@ -8,7 +8,6 @@ const cleanupTestApp = require('../../node_modules/roosevelt/test/util/cleanupTe
 const generateTestApp = require('../../node_modules/roosevelt/test/util/generateTestApp')
 const fork = require('child_process').fork
 const less = require('less')
-const LessPluginCleanCSS = require('less-plugin-clean-css')
 
 describe('Roosevelt LESS Section Test', function () {
   // location of the test app
@@ -70,10 +69,6 @@ describe('Roosevelt LESS Section Test', function () {
         compiler: {
           nodeModule: '../../roosevelt-less',
           params: {
-            cleanCSS: {
-              advanced: true,
-              aggressiveMerging: true
-            },
             sourceMap: null
           }
         }
@@ -88,62 +83,7 @@ describe('Roosevelt LESS Section Test', function () {
       let contentsOfCompiledCSS = fs.readFileSync(pathOfcompiledCSS, 'utf8')
       // generate a CSS string that represents the CSS file that was compiled with no params set and compare that on the callback
 
-      // set up the options that would be the same as the default of the app
-      const opts = { advanced: true, aggressiveMerging: true }
-      const cleanCSSPlugin = new LessPluginCleanCSS(opts)
       const options = {}
-      options.plugins = [cleanCSSPlugin]
-      options.sourceMap = null
-
-      less.render(lessStaticFile, options, function (error, output) {
-        if (error) {
-          assert.fail(error)
-          testApp.send('stop')
-        } else {
-          let test = contentsOfCompiledCSS === output.css
-          assert.strictEqual(test, true)
-          testApp.send('stop')
-        }
-      })
-    })
-    testApp.on('exit', () => {
-      done()
-    })
-  })
-
-  it('should make a compiled CSS file with a changed param that is the same as the compiled CSS string I have generated from using less with changed param (cleanCSS)', function (done) {
-    // generate the app
-    generateTestApp({
-      appDir: appDir,
-      generateFolderStructure: true,
-      css: {
-        compiler: {
-          nodeModule: '../../roosevelt-less',
-          params: {
-            cleanCSS: {
-              advanced: false,
-              aggressiveMerging: false,
-              keepBreaks: true
-            },
-            sourceMap: null
-          }
-        }
-      }
-    }, lOptions)
-
-    // fork the app and run it as a child process
-    const testApp = fork(path.join(appDir, 'app.js'), { 'stdio': ['pipe', 'pipe', 'pipe', 'ipc'] })
-
-    // grab the string data from the compiled css file and compare that to the string of what a normal one looks like
-    testApp.on('message', () => {
-      let contentsOfCompiledCSS = fs.readFileSync(pathOfcompiledCSS, 'utf8')
-      // generate a CSS string that represents the CSS file that was compiled with no params set and compare that on the callback
-
-      // set up the options that would be the same as the default of the app
-      const opts = { advanced: false, aggressiveMerging: false, keepBreaks: true }
-      const cleanCSSPlugin = new LessPluginCleanCSS(opts)
-      const options = {}
-      options.plugins = [cleanCSSPlugin]
       options.sourceMap = null
       less.render(lessStaticFile, options, function (error, output) {
         if (error) {
@@ -170,11 +110,6 @@ describe('Roosevelt LESS Section Test', function () {
         compiler: {
           nodeModule: '../../roosevelt-less',
           params: {
-            cleanCSS: {
-              advanced: false,
-              aggressiveMerging: false,
-              keepBreaks: true
-            },
             sourceMap: {
               sourceMapFileInline: true,
               outputSourceFiles: true
@@ -210,11 +145,6 @@ describe('Roosevelt LESS Section Test', function () {
         compiler: {
           nodeModule: '../../roosevelt-less',
           params: {
-            cleanCSS: {
-              advanced: false,
-              aggressiveMerging: false,
-              keepBreaks: true
-            },
             sourceMap: {
               sourceMapFileInline: true,
               outputSourceFiles: true
@@ -241,56 +171,6 @@ describe('Roosevelt LESS Section Test', function () {
     })
   })
 
-  it('should not use the cleanCSS plugin if minify is false', function (done) {
-    // generate the app
-    generateTestApp({
-      appDir: appDir,
-      generateFolderStructure: true,
-      minify: false,
-      css: {
-        compiler: {
-          nodeModule: '../../roosevelt-less',
-          params: {
-            cleanCSS: {
-              advanced: false,
-              aggressiveMerging: false
-            },
-            sourceMap: null
-          }
-        }
-      }
-    }, lOptions)
-
-    // fork the app and run it as a child process
-    const testApp = fork(path.join(appDir, 'app.js'), { 'stdio': ['pipe', 'pipe', 'pipe', 'ipc'] })
-
-    // grab the string data from the compiled css file and compare that to the string of what a normal one looks like
-    testApp.on('message', () => {
-      let contentsOfCompiledCSS = fs.readFileSync(pathOfcompiledCSS, 'utf8')
-      // generate a CSS string that represents the CSS file that was compiled with no params set and compare that on the callback
-
-      // set up the options that would be the same as the default of the app
-      const opts = { advanced: false, aggressiveMerging: false }
-      const cleanCSSPlugin = new LessPluginCleanCSS(opts)
-      const options = {}
-      options.plugins = [cleanCSSPlugin]
-      options.sourceMap = null
-      less.render(lessStaticFile, options, function (error, output) {
-        if (error) {
-          assert.fail(error)
-          testApp.send('stop')
-        } else {
-          let test = contentsOfCompiledCSS === output.css
-          assert.strictEqual(test, false)
-          testApp.send('stop')
-        }
-      })
-    })
-    testApp.on('exit', () => {
-      done()
-    })
-  })
-
   it('should give a "error" string if there is a massive problem with the code that the program is trying to parse (typo)', function (done) {
     // CSS source script that has a error in it (typo)
     const errorTest = `body { widthy: 300 pax`
@@ -308,10 +188,6 @@ describe('Roosevelt LESS Section Test', function () {
         compiler: {
           nodeModule: '../../roosevelt-less',
           params: {
-            cleanCSS: {
-              advanced: true,
-              aggressiveMerging: true
-            },
             sourceMap: null
           }
         }
@@ -357,10 +233,6 @@ describe('Roosevelt LESS Section Test', function () {
         compiler: {
           nodeModule: '../../roosevelt-less',
           params: {
-            cleanCSS: {
-              advanced: true,
-              aggressiveMerging: true
-            },
             sourceMap: null
           }
         },
@@ -389,143 +261,6 @@ describe('Roosevelt LESS Section Test', function () {
       testApp.send('stop')
     })
 
-    testApp.on('exit', () => {
-      done()
-    })
-  })
-
-  it(`should be able to compile a less file that uses its advanced and aggressiveMerging options if the compress param is true`, function (done) {
-    // generate the app
-    generateTestApp({
-      appDir: appDir,
-      generateFolderStructure: true,
-      css: {
-        compiler: {
-          nodeModule: '../../roosevelt-less',
-          params: {
-            cleanCSS: {
-              advanced: false,
-              aggressiveMerging: false
-            },
-            sourceMap: null
-          },
-          compress: true
-        }
-      }
-    }, lOptions)
-
-    // fork the app and run it as a child process
-    const testApp = fork(path.join(appDir, 'app.js'), { 'stdio': ['pipe', 'pipe', 'pipe', 'ipc'] })
-
-    // grab the string data from the compiled css file and compare that to the string of what a normal one looks like
-    testApp.on('message', () => {
-      let contentsOfCompiledCSS = fs.readFileSync(pathOfcompiledCSS, 'utf8')
-      // generate a CSS string that represents the CSS file that was compiled with no params set and compare that on the callback
-
-      // set up the options that would be the same as the default of the app
-      const opts = { advanced: true, aggressiveMerging: true }
-      const cleanCSSPlugin = new LessPluginCleanCSS(opts)
-      const options = {}
-      options.plugins = [cleanCSSPlugin]
-      options.sourceMap = null
-      less.render(lessStaticFile, options, function (error, output) {
-        if (error) {
-          assert.fail(error)
-          testApp.send('stop')
-        } else {
-          let test = contentsOfCompiledCSS === output.css
-          assert.strictEqual(test, true)
-          testApp.send('stop')
-        }
-      })
-    })
-    testApp.on('exit', () => {
-      done()
-    })
-  })
-
-  it(`should be able to compile a less file that uses none of cleanCSS features if cleanCSS is not set`, function (done) {
-    // generate the app
-    generateTestApp({
-      appDir: appDir,
-      generateFolderStructure: true,
-      css: {
-        compiler: {
-          nodeModule: '../../roosevelt-less',
-          params: {
-            sourceMap: null
-          }
-        }
-      }
-    }, lOptions)
-
-    // fork the app and run it as a child process
-    const testApp = fork(path.join(appDir, 'app.js'), { 'stdio': ['pipe', 'pipe', 'pipe', 'ipc'] })
-
-    // grab the string data from the compiled css file and compare that to the string of what a normal one looks like
-    testApp.on('message', () => {
-      let contentsOfCompiledCSS = fs.readFileSync(pathOfcompiledCSS, 'utf8')
-      // generate a CSS string that represents the CSS file that was compiled with no params set and compare that on the callback
-
-      // set up the options that would be the same as the default of the app
-      const opts = {}
-      const cleanCSSPlugin = new LessPluginCleanCSS(opts)
-      const options = {}
-      options.plugins = [cleanCSSPlugin]
-      options.sourceMap = null
-      less.render(lessStaticFile, options, function (error, output) {
-        if (error) {
-          assert.fail(error)
-          testApp.send('stop')
-        } else {
-          let test = contentsOfCompiledCSS === output.css
-          assert.strictEqual(test, true)
-          testApp.send('stop')
-        }
-      })
-    })
-    testApp.on('exit', () => {
-      done()
-    })
-  })
-
-  it(`should be able to compile a less file even when the params of the css Compiler param is empty`, function (done) {
-    // generate the app
-    generateTestApp({
-      appDir: appDir,
-      generateFolderStructure: true,
-      css: {
-        compiler: {
-          nodeModule: '../../roosevelt-less'
-        }
-      }
-    }, lOptions)
-
-    // fork the app and run it as a child process
-    const testApp = fork(path.join(appDir, 'app.js'), { 'stdio': ['pipe', 'pipe', 'pipe', 'ipc'] })
-
-    // grab the string data from the compiled css file and compare that to the string of what a normal one looks like
-    testApp.on('message', () => {
-      let contentsOfCompiledCSS = fs.readFileSync(pathOfcompiledCSS, 'utf8')
-      // generate a CSS string that represents the CSS file that was compiled with no params set and compare that on the callback
-
-      // set up the options that would be the same as the default of the app
-      const opts = {}
-      const cleanCSSPlugin = new LessPluginCleanCSS(opts)
-      const options = {}
-      options.plugins = [cleanCSSPlugin]
-      options.sourceMap = null
-      less.render(lessStaticFile, options, function (error, output) {
-        if (error) {
-          assert.fail(error)
-          testApp.send('stop')
-        } else {
-          let test = contentsOfCompiledCSS === output.css
-          assert.strictEqual(test, true)
-          testApp.send('stop')
-        }
-      })
-    })
     testApp.on('exit', () => {
       done()
     })
