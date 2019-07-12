@@ -81,11 +81,11 @@ describe('Roosevelt LESS Section Test', function () {
     }, lOptions)
 
     // fork the app and run it as a child process
-    const testApp = fork(path.join(appDir, 'app.js'), { 'stdio': ['pipe', 'pipe', 'pipe', 'ipc'] })
+    const testApp = fork(path.join(appDir, 'app.js'), { stdio: ['pipe', 'pipe', 'pipe', 'ipc'] })
 
     // grab the string data from the compiled css file and compare that to the string of what a normal one looks like
     testApp.on('message', () => {
-      let contentsOfCompiledCSS = fs.readFileSync(pathOfcompiledCSS, 'utf8')
+      const contentsOfCompiledCSS = fs.readFileSync(pathOfcompiledCSS, 'utf8')
       // generate a CSS string that represents the CSS file that was compiled with no params set and compare that on the callback
 
       // set up the options that would be the same as the default of the app
@@ -100,7 +100,7 @@ describe('Roosevelt LESS Section Test', function () {
           assert.fail(error)
           testApp.send('stop')
         } else {
-          let test = contentsOfCompiledCSS === output.css
+          const test = contentsOfCompiledCSS === output.css
           assert.strictEqual(test, true)
           testApp.send('stop')
         }
@@ -132,11 +132,11 @@ describe('Roosevelt LESS Section Test', function () {
     }, lOptions)
 
     // fork the app and run it as a child process
-    const testApp = fork(path.join(appDir, 'app.js'), { 'stdio': ['pipe', 'pipe', 'pipe', 'ipc'] })
+    const testApp = fork(path.join(appDir, 'app.js'), { stdio: ['pipe', 'pipe', 'pipe', 'ipc'] })
 
     // grab the string data from the compiled css file and compare that to the string of what a normal one looks like
     testApp.on('message', () => {
-      let contentsOfCompiledCSS = fs.readFileSync(pathOfcompiledCSS, 'utf8')
+      const contentsOfCompiledCSS = fs.readFileSync(pathOfcompiledCSS, 'utf8')
       // generate a CSS string that represents the CSS file that was compiled with no params set and compare that on the callback
 
       // set up the options that would be the same as the default of the app
@@ -150,7 +150,7 @@ describe('Roosevelt LESS Section Test', function () {
           assert.fail(error)
           testApp.send('stop')
         } else {
-          let test = contentsOfCompiledCSS === output.css
+          const test = contentsOfCompiledCSS === output.css
           assert.strictEqual(test, true)
           testApp.send('stop')
         }
@@ -185,13 +185,13 @@ describe('Roosevelt LESS Section Test', function () {
     }, lOptions)
 
     // fork the app and run it as a child process
-    const testApp = fork(path.join(appDir, 'app.js'), ['--dev'], { 'stdio': ['pipe', 'pipe', 'pipe', 'ipc'] })
+    const testApp = fork(path.join(appDir, 'app.js'), ['--dev'], { stdio: ['pipe', 'pipe', 'pipe', 'ipc'] })
 
     // grab the string data from the compiled css file and compare that to the string of what a normal uglified one like
     testApp.on('message', () => {
       // read the string data
-      let contentsOfCompiledCSS = fs.readFileSync(pathOfcompiledCSS, 'utf8')
-      let test1 = contentsOfCompiledCSS.includes('/*# sourceMappingURL=data:application/json;base64')
+      const contentsOfCompiledCSS = fs.readFileSync(pathOfcompiledCSS, 'utf8')
+      const test1 = contentsOfCompiledCSS.includes('/*# sourceMappingURL=data:application/json;base64')
       assert.strictEqual(test1, true)
       testApp.send('stop')
     })
@@ -225,13 +225,13 @@ describe('Roosevelt LESS Section Test', function () {
     }, lOptions)
 
     // fork the app and run it as a child process
-    const testApp = fork(path.join(appDir, 'app.js'), ['--prod'], { 'stdio': ['pipe', 'pipe', 'pipe', 'ipc'] })
+    const testApp = fork(path.join(appDir, 'app.js'), ['--prod'], { stdio: ['pipe', 'pipe', 'pipe', 'ipc'] })
 
     // grab the string data from the compiled css file and compare that to the string of what a normal uglified one like
     testApp.on('message', () => {
       // read the string data
-      let contentsOfCompiledCSS = fs.readFileSync(pathOfcompiledCSS, 'utf8')
-      let test1 = contentsOfCompiledCSS.includes('/*# sourceMappingURL=data:application/json;base64')
+      const contentsOfCompiledCSS = fs.readFileSync(pathOfcompiledCSS, 'utf8')
+      const test1 = contentsOfCompiledCSS.includes('/*# sourceMappingURL=data:application/json;base64')
       assert.strictEqual(test1, false)
       testApp.send('stop')
     })
@@ -262,11 +262,11 @@ describe('Roosevelt LESS Section Test', function () {
     }, lOptions)
 
     // fork the app and run it as a child process
-    const testApp = fork(path.join(appDir, 'app.js'), { 'stdio': ['pipe', 'pipe', 'pipe', 'ipc'] })
+    const testApp = fork(path.join(appDir, 'app.js'), { stdio: ['pipe', 'pipe', 'pipe', 'ipc'] })
 
     // grab the string data from the compiled css file and compare that to the string of what a normal one looks like
     testApp.on('message', () => {
-      let contentsOfCompiledCSS = fs.readFileSync(pathOfcompiledCSS, 'utf8')
+      const contentsOfCompiledCSS = fs.readFileSync(pathOfcompiledCSS, 'utf8')
       // generate a CSS string that represents the CSS file that was compiled with no params set and compare that on the callback
 
       // set up the options that would be the same as the default of the app
@@ -280,7 +280,7 @@ describe('Roosevelt LESS Section Test', function () {
           assert.fail(error)
           testApp.send('stop')
         } else {
-          let test = contentsOfCompiledCSS === output.css
+          const test = contentsOfCompiledCSS === output.css
           assert.strictEqual(test, false)
           testApp.send('stop')
         }
@@ -319,7 +319,7 @@ describe('Roosevelt LESS Section Test', function () {
     }, lOptions)
 
     // fork the app and run it as a child process
-    const testApp = fork(path.join(appDir, 'app.js'), { 'stdio': ['pipe', 'pipe', 'pipe', 'ipc'] })
+    const testApp = fork(path.join(appDir, 'app.js'), { stdio: ['pipe', 'pipe', 'pipe', 'ipc'] })
 
     testApp.stderr.on('data', (data) => {
       if (data.includes('failed to parse')) {
@@ -341,7 +341,7 @@ describe('Roosevelt LESS Section Test', function () {
 
   it('make a CSS file that declares a CSS variable that contains the app version number from package.js', function (done) {
     // contents of sample package.json file to use for testing css versionFile
-    let packageJSON = {
+    const packageJSON = {
       version: '0.3.1',
       rooseveltConfig: {}
     }
@@ -373,18 +373,18 @@ describe('Roosevelt LESS Section Test', function () {
     }, lOptions)
 
     // fork the app.js file and run it as a child process
-    const testApp = fork(path.join(appDir, 'app.js'), { 'stdio': ['pipe', 'pipe', 'pipe', 'ipc'] })
+    const testApp = fork(path.join(appDir, 'app.js'), { stdio: ['pipe', 'pipe', 'pipe', 'ipc'] })
 
     // wait for the app to be finished initialized
     testApp.on('message', () => {
       // see if the file exist inside the css folder
-      let versionFilePath = path.join(appDir, 'statics', 'css', '_version.less')
-      let test1 = fs.existsSync(versionFilePath)
+      const versionFilePath = path.join(appDir, 'statics', 'css', '_version.less')
+      const test1 = fs.existsSync(versionFilePath)
       assert.strictEqual(test1, true)
       // see that the value in the css version file is correct
-      let versionFileString = fs.readFileSync(path.join(appDir, 'statics', 'css', '_version.less'), 'utf8')
-      let versionFileNum = versionFileString.split(`'`)
-      let test2 = packageJSON.version === versionFileNum[1]
+      const versionFileString = fs.readFileSync(path.join(appDir, 'statics', 'css', '_version.less'), 'utf8')
+      const versionFileNum = versionFileString.split(`'`)
+      const test2 = packageJSON.version === versionFileNum[1]
       assert.strictEqual(test2, true)
       testApp.send('stop')
     })
@@ -415,11 +415,11 @@ describe('Roosevelt LESS Section Test', function () {
     }, lOptions)
 
     // fork the app and run it as a child process
-    const testApp = fork(path.join(appDir, 'app.js'), { 'stdio': ['pipe', 'pipe', 'pipe', 'ipc'] })
+    const testApp = fork(path.join(appDir, 'app.js'), { stdio: ['pipe', 'pipe', 'pipe', 'ipc'] })
 
     // grab the string data from the compiled css file and compare that to the string of what a normal one looks like
     testApp.on('message', () => {
-      let contentsOfCompiledCSS = fs.readFileSync(pathOfcompiledCSS, 'utf8')
+      const contentsOfCompiledCSS = fs.readFileSync(pathOfcompiledCSS, 'utf8')
       // generate a CSS string that represents the CSS file that was compiled with no params set and compare that on the callback
 
       // set up the options that would be the same as the default of the app
@@ -433,7 +433,7 @@ describe('Roosevelt LESS Section Test', function () {
           assert.fail(error)
           testApp.send('stop')
         } else {
-          let test = contentsOfCompiledCSS === output.css
+          const test = contentsOfCompiledCSS === output.css
           assert.strictEqual(test, true)
           testApp.send('stop')
         }
@@ -460,11 +460,11 @@ describe('Roosevelt LESS Section Test', function () {
     }, lOptions)
 
     // fork the app and run it as a child process
-    const testApp = fork(path.join(appDir, 'app.js'), { 'stdio': ['pipe', 'pipe', 'pipe', 'ipc'] })
+    const testApp = fork(path.join(appDir, 'app.js'), { stdio: ['pipe', 'pipe', 'pipe', 'ipc'] })
 
     // grab the string data from the compiled css file and compare that to the string of what a normal one looks like
     testApp.on('message', () => {
-      let contentsOfCompiledCSS = fs.readFileSync(pathOfcompiledCSS, 'utf8')
+      const contentsOfCompiledCSS = fs.readFileSync(pathOfcompiledCSS, 'utf8')
       // generate a CSS string that represents the CSS file that was compiled with no params set and compare that on the callback
 
       // set up the options that would be the same as the default of the app
@@ -478,7 +478,7 @@ describe('Roosevelt LESS Section Test', function () {
           assert.fail(error)
           testApp.send('stop')
         } else {
-          let test = contentsOfCompiledCSS === output.css
+          const test = contentsOfCompiledCSS === output.css
           assert.strictEqual(test, true)
           testApp.send('stop')
         }
@@ -502,11 +502,11 @@ describe('Roosevelt LESS Section Test', function () {
     }, lOptions)
 
     // fork the app and run it as a child process
-    const testApp = fork(path.join(appDir, 'app.js'), { 'stdio': ['pipe', 'pipe', 'pipe', 'ipc'] })
+    const testApp = fork(path.join(appDir, 'app.js'), { stdio: ['pipe', 'pipe', 'pipe', 'ipc'] })
 
     // grab the string data from the compiled css file and compare that to the string of what a normal one looks like
     testApp.on('message', () => {
-      let contentsOfCompiledCSS = fs.readFileSync(pathOfcompiledCSS, 'utf8')
+      const contentsOfCompiledCSS = fs.readFileSync(pathOfcompiledCSS, 'utf8')
       // generate a CSS string that represents the CSS file that was compiled with no params set and compare that on the callback
 
       // set up the options that would be the same as the default of the app
@@ -520,7 +520,7 @@ describe('Roosevelt LESS Section Test', function () {
           assert.fail(error)
           testApp.send('stop')
         } else {
-          let test = contentsOfCompiledCSS === output.css
+          const test = contentsOfCompiledCSS === output.css
           assert.strictEqual(test, true)
           testApp.send('stop')
         }

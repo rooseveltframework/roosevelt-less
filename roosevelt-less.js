@@ -14,12 +14,12 @@ module.exports = {
       const params = cssCompiler.params || {}
 
       // LESS render options
-      let options = {
+      const options = {
         paths: app.get('cssPath'),
         filename: path.basename(fileName)
       }
 
-      let lessInput = fs.readFileSync(path.join(app.get('cssPath'), fileName), 'utf8')
+      const lessInput = fs.readFileSync(path.join(app.get('cssPath'), fileName), 'utf8')
 
       // Clean-css options
       let opts
@@ -51,8 +51,8 @@ module.exports = {
         if (err) {
           reject(err)
         }
-        let newFile = fileName.replace('.less', '.css')
-        let newCSS = output.css
+        const newFile = fileName.replace('.less', '.css')
+        const newCSS = output.css
 
         resolve([newFile, newCSS])
       })
