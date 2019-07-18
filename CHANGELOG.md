@@ -2,7 +2,7 @@
 
 ## Next version
 
-- Put your changes here...
+- Enabled source mapping by default
 
 ## 0.7.1 and below
 
