@@ -27,8 +27,14 @@ module.exports = {
       // LESS clean-css plugin
       let cleanCSSPlugin
 
-      if (typeof params.sourceMap === 'object' && app.settings.env === 'development') {
+      if (typeof params.sourceMap === 'object' && params.sourceMap !== null && params.sourceMap !== undefined && app.settings.env === 'development') {
         options.sourceMap = params.sourceMap
+      } else if (app.settings.env === 'development') {
+        // Enable source mapping by default
+        options.sourceMap = {
+          sourceMapFileInline: true,
+          outputSourceFiles: true
+        }
       } else {
         options.sourceMap = undefined
       }
