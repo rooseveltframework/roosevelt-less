@@ -2,7 +2,7 @@
 
 ## Next version
 
-- Put your changes here...
+- Removed less-plugin-clean-css dependency and minification code
 
 ## 0.7.1 and below
 
