@@ -20,7 +20,7 @@ module.exports = {
 
       let lessInput = fs.readFileSync(path.join(app.get('cssPath'), fileName), 'utf8')
 
-      if (typeof params.sourceMap === 'object' && app.settings.env === 'development') {
+      if (typeof params.sourceMap === 'object' && params.sourceMap !== null && params.sourceMap !== undefined && app.settings.env === 'development') {
         options.sourceMap = params.sourceMap
       } else if (app.settings.env === 'development') {
         // Enable source mapping by default
