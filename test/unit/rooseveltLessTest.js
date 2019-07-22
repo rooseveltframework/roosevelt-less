@@ -296,4 +296,48 @@ describe('Roosevelt LESS Section Test', function () {
       done()
     })
   })
+
+  it('should enable source mapping by default in development mode when the "sourceMap" param is not defined', function (done) {
+    // generate the app
+    generateTestApp({
+      appDir: appDir,
+      generateFolderStructure: true,
+      css: {
+        compiler: {
+          nodeModule: '../../roosevelt-less',
+          params: {
+            sourceMap: null
+          }
+        }
+      }
+    }, lOptions)
+
+    // fork the app and run it as a child process
+    const testApp = fork(path.join(appDir, 'app.js'), ['--dev'], { 'stdio': ['pipe', 'pipe', 'pipe', 'ipc'] })
+
+    testApp.on('message', () => {
+      let contentsOfCompiledCSS = fs.readFileSync(pathOfcompiledCSS, 'utf8')
+
+      // set up the options that would be the same as when sourceMap options are not defined and app is in dev mode
+      const options = {
+        sourceMap: {
+          sourceMapFileInline: true,
+          outputSourceFiles: true
+        }
+      }
+      less.render(lessStaticFile, options, function (error, output) {
+        if (error) {
+          assert.fail(error)
+        } else {
+          // check that both the compiled file and the output have source mapping
+          let test = contentsOfCompiledCSS.includes('/*# sourceMappingURL=data:application/json;base64') && output.css.includes('/*# sourceMappingURL=data:application/json;base64')
+          assert.strictEqual(test, true)
+        }
+      })
+    })
+
+    testApp.on('exit', () => {
+      done()
+    })
+  })
 })
