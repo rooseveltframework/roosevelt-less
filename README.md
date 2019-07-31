@@ -8,7 +8,7 @@ roosevelt-less
 Params
 ---
 
-- `sourceMap`: This param is optional. It accepts multiple options which are documented in the [LESS API documentation](http://lesscss.org/usage/index.html#programmatic-usage).
+- `sourceMap`: This param is optional. It accepts multiple options which are documented in the [LESS API documentation](http://lesscss.org/usage/index.html#programmatic-usage). By default, this param is enabled with `sourceMapFileInline: true` and `outputSourceFiles: true` in development mode.
 
 ## Backwards compatibility notes
 
