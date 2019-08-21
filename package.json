@@ -18,7 +18,7 @@
   },
   "engineStrict": true,
   "dependencies": {
-    "less": "3.9.0"
+    "less": "3.10.2"
   },
   "devDependencies": {
     "c8": "~5.0.1",
