@@ -169,7 +169,7 @@ describe('Roosevelt LESS Section Test', function () {
 
   it('should give a "error" string if there is a massive problem with the code that the program is trying to parse (typo)', function (done) {
     // CSS source script that has a error in it (typo)
-    const errorTest = `body { widthy: 300 pax`
+    const errorTest = 'body { widthy: 300 pax'
     // path of where the file with this script will be located
     const pathOfErrorStaticCSS = path.join(appDir, 'statics', 'css', 'b.css')
     // make this file before the test
@@ -250,7 +250,7 @@ describe('Roosevelt LESS Section Test', function () {
       assert.strictEqual(test1, true)
       // see that the value in the css version file is correct
       const versionFileString = fs.readFileSync(path.join(appDir, 'statics', 'css', '_version.less'), 'utf8')
-      const versionFileNum = versionFileString.split(`'`)
+      const versionFileNum = versionFileString.split('\'')
       const test2 = packageJSON.version === versionFileNum[1]
       assert.strictEqual(test2, true)
     })
@@ -313,10 +313,10 @@ describe('Roosevelt LESS Section Test', function () {
     }, lOptions)
 
     // fork the app and run it as a child process
-    const testApp = fork(path.join(appDir, 'app.js'), ['--dev'], { 'stdio': ['pipe', 'pipe', 'pipe', 'ipc'] })
+    const testApp = fork(path.join(appDir, 'app.js'), ['--dev'], { stdio: ['pipe', 'pipe', 'pipe', 'ipc'] })
 
     testApp.on('message', () => {
-      let contentsOfCompiledCSS = fs.readFileSync(pathOfcompiledCSS, 'utf8')
+      const contentsOfCompiledCSS = fs.readFileSync(pathOfcompiledCSS, 'utf8')
 
       // set up the options that would be the same as when sourceMap options are not defined and app is in dev mode
       const options = {
@@ -330,7 +330,7 @@ describe('Roosevelt LESS Section Test', function () {
           assert.fail(error)
         } else {
           // check that both the compiled file and the output have source mapping
-          let test = contentsOfCompiledCSS.includes('/*# sourceMappingURL=data:application/json;base64') && output.css.includes('/*# sourceMappingURL=data:application/json;base64')
+          const test = contentsOfCompiledCSS.includes('/*# sourceMappingURL=data:application/json;base64') && output.css.includes('/*# sourceMappingURL=data:application/json;base64')
           assert.strictEqual(test, true)
         }
       })
