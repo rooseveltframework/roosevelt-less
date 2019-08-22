@@ -313,10 +313,10 @@ describe('Roosevelt LESS Section Test', function () {
     }, lOptions)
 
     // fork the app and run it as a child process
-    const testApp = fork(path.join(appDir, 'app.js'), ['--dev'], { 'stdio': ['pipe', 'pipe', 'pipe', 'ipc'] })
+    const testApp = fork(path.join(appDir, 'app.js'), ['--dev'], { stdio: ['pipe', 'pipe', 'pipe', 'ipc'] })
 
     testApp.on('message', () => {
-      let contentsOfCompiledCSS = fs.readFileSync(pathOfcompiledCSS, 'utf8')
+      const contentsOfCompiledCSS = fs.readFileSync(pathOfcompiledCSS, 'utf8')
 
       // set up the options that would be the same as when sourceMap options are not defined and app is in dev mode
       const options = {
@@ -330,7 +330,7 @@ describe('Roosevelt LESS Section Test', function () {
           assert.fail(error)
         } else {
           // check that both the compiled file and the output have source mapping
-          let test = contentsOfCompiledCSS.includes('/*# sourceMappingURL=data:application/json;base64') && output.css.includes('/*# sourceMappingURL=data:application/json;base64')
+          const test = contentsOfCompiledCSS.includes('/*# sourceMappingURL=data:application/json;base64') && output.css.includes('/*# sourceMappingURL=data:application/json;base64')
           assert.strictEqual(test, true)
         }
       })
