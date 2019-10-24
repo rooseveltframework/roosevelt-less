@@ -24,7 +24,7 @@
     "less": "3.10.3"
   },
   "devDependencies": {
-    "c8": "~5.0.4",
+    "c8": "~6.0.0",
     "codecov": "~3.6.1",
     "eslint": "~6.5.0",
     "eslint-plugin-mocha": "~6.2.0",
