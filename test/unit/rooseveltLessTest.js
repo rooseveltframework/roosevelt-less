@@ -65,6 +65,7 @@ describe('Roosevelt LESS Section Test', function () {
     generateTestApp({
       appDir: appDir,
       generateFolderStructure: true,
+      minify: false,
       css: {
         compiler: {
           nodeModule: '../../roosevelt-less',
