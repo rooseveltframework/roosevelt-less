@@ -8,7 +8,7 @@
       "url": "https://github.com/rooseveltframework/roosevelt-less/graphs/contributors"
     }
   ],
-  "version": "0.7.1",
+  "version": "0.8.0",
   "files": [
     "roosevelt-less.js"
   ],
@@ -21,18 +21,18 @@
   },
   "engineStrict": true,
   "dependencies": {
-    "less": "3.10.3"
+    "less": "~3.10.3"
   },
   "devDependencies": {
-    "c8": "~6.0.0",
+    "c8": "~6.0.1",
     "codecov": "~3.6.1",
     "eslint": "~6.6.0",
-    "eslint-plugin-mocha": "~6.2.0",
+    "eslint-plugin-mocha": "~6.2.1",
     "fs-extra": "~8.1.0",
-    "husky": "~3.0.7",
-    "lint-staged": "~9.4.0",
-    "mocha": "~6.2.1",
-    "roosevelt": "~0.14.6",
+    "husky": "~3.0.9",
+    "lint-staged": "~9.4.3",
+    "mocha": "~6.2.2",
+    "roosevelt": "~0.15.1",
     "standard": "~14.3.1"
   },
   "repository": {
@@ -74,5 +74,9 @@
     "hooks": {
       "pre-commit": "lint-staged && eslint ./test"
     }
+  },
+  "funding": {
+    "type": "individual",
+    "url": "https://github.com/sponsors/kethinov"
   }
 }
