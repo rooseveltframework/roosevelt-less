@@ -1,5 +1,7 @@
-roosevelt-less
+[DEPRECATED] roosevelt-less
 ===
+
+**DEPRECATED: This module is obsoleted by the release of Roosevelt >=0.16.x. You may still need it if you are using Roosevelt <=0.15.x, but it is recommended to upgrade your Roosevelt apps to >=0.16.x as soon as you can because older versions (including this submodule!) are no longer receiving seucrity updates.**
 
 [![Build Status](https://github.com/rooseveltframework/roosevelt-less/workflows/CI/badge.svg
 )](https://github.com/rooseveltframework/roosevelt-less/actions?query=workflow%3ACI) [![codecov](https://codecov.io/gh/rooseveltframework/roosevelt-less/branch/master/graph/badge.svg)](https://codecov.io/gh/rooseveltframework/roosevelt-less) [![npm](https://img.shields.io/npm/v/roosevelt-less.svg)](https://www.npmjs.com/package/roosevelt-less)
